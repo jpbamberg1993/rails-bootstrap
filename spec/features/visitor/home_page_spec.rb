@@ -8,9 +8,11 @@ feature 'Home Page' do
 	# 	Given I am a visitor 
 	# 	When I visit the home page
 	# 	Then I should see "Welcome"
-	scenario 'Visit the Home Page' do
+	scenario 'Visit the Home Page', :js do
 		visit root_path
+		# save_and_open_page
 		expect(page).to have_content 'Welcome'
 	end
-	
+
 end
+
