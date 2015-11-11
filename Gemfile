@@ -19,6 +19,7 @@ group :test do
 	gem 'launchy'
 	gem 'selenium-webdriver'
   gem 'email_spec'
+  gem 'faker'
 end
 group :development do
   gem 'web-console', '~> 2.0'
