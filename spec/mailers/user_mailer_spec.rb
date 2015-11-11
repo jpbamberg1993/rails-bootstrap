@@ -1,5 +1,33 @@
 require "rails_helper"
 
-RSpec.describe UserMailer, type: :mailer do
-  pending "add some examples to (or delete) #{__FILE__}"
+# Boiler plate 
+# RSpec.describe UserMailer, type: :mailer do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end
+
+describe UserMailer do
+	
+	describe '#send_email' do
+			
+		before(:each) do
+			@user = FactoryGirl.create(:user)
+			UserMailer.send_email(@user).deliver_now
+		end
+
+		it 'sends an email' do
+			expect(ActionMailer::Base.deliveries.count).to eq 1
+		end
+
+		it 'sends an email to the correct recipient' do
+			expect(ActionMailer::Base.deliveries.first.to).to match [@user.email]
+		end
+
+		it 'sends an email from the correct sender' do
+			expect(ActionMailer::Base.deliveries.first.from).to match ['sender@example.com']
+		end
+
+		it 'sends an email with the correct subject' do
+			expect(ActionMailer::Base.deliveries.first.subject).to match 'You Have Mail'
+		end
+	end
 end
