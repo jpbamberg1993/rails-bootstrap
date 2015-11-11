@@ -18,6 +18,7 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'selenium-webdriver'
+  gem 'email_spec'
 end
 group :development do
   gem 'web-console', '~> 2.0'
