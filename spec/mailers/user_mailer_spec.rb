@@ -19,15 +19,18 @@ describe UserMailer do
 		end
 
 		it 'sends an email to the correct recipient' do
-			expect(ActionMailer::Base.deliveries.first.to).to match [@user.email]
+			# expect(ActionMailer::Base.deliveries.first.to).to match [@user.email]
+			expect(open_last_email).to be_delivered_to @user.email
 		end
 
 		it 'sends an email from the correct sender' do
-			expect(ActionMailer::Base.deliveries.first.from).to match ['sender@example.com']
+			# expect(ActionMailer::Base.deliveries.first.from).to match ['sender@example.com']
+			expect(open_last_email).to be_delivered_from 'sender@example.com'
 		end
 
 		it 'sends an email with the correct subject' do
-			expect(ActionMailer::Base.deliveries.first.subject).to match 'You Have Mail'
+			# expect(ActionMailer::Base.deliveries.first.subject).to match 'You Have Mail'
+			expect(open_last_email).to have_subject 'You Have Mail'
 		end
 	end
 end
